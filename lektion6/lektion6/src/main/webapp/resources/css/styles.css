@@ -1,0 +1,367 @@
+/* Allgemeine Layout-Einstellungen */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #eaf6fb;
+}
+
+/* Container – breiter & mit Abstand */
+.container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3rem;
+}
+
+/* Navigation */
+.app-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    padding: 0.75rem 0;
+}
+
+.nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand-link {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #0077cc;
+    text-decoration: none;
+}
+
+.main-nav .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav .nav-list li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.main-nav .nav-list li a:hover {
+    color: #0077cc;
+}
+
+/* Login-Button größer */
+.login-btn {
+    background-color: #20c997;
+    color: white !important;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.login-btn:hover {
+    background-color: #17a589;
+}
+
+/* Footer */
+.app-footer {
+    background-color: #d8f0f6;
+    padding: 1rem 0;
+    margin-top: 2rem;
+    border-top: 1px solid #ccc;
+}
+
+.footer-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem; /* Abstand zwischen Jahr & Impressum */
+}
+
+/* Buttons allgemein */
+.btn {
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-success {
+    background-color: #20c997;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #17a589;
+}
+
+/* Karte – Legende */
+.legend {
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 1rem;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.legend .dot {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+/* Blauer Hintergrundbereich */
+.login-section {
+    background: #e6f7ff; /* hellblau */
+    padding: 4rem 1rem;
+}
+
+/* Zentrierte Login-Card */
+.auth-wrapper-centered {
+    max-width: 420px;
+    margin: 0 auto;
+}
+/* ===== Hero Section ===== */
+.hero {
+  position: relative;
+  margin: 0 auto 2rem auto;
+  max-width: 1280px;
+  padding: 0 1rem;
+}
+
+.hero-media {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: var(--shadow-2);
+  height: 320px;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(105%) contrast(105%);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(4, 80, 120, .30), rgba(4, 80, 120, .20)),
+              radial-gradient(1200px 300px at 20% 0%, rgba(255,255,255,.45), transparent 60%);
+}
+
+.hero-content {
+  position: relative;
+  margin-top: -140px;              /* zieht Inhalt in den Bildbereich */
+  padding: 1rem 1.25rem 0 1.25rem;
+  color: #0d2b38;
+}
+
+.hero h1 {
+  color: #0c3a49;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  margin: 0 0 .35rem 0;
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+.hero .lead {
+  max-width: 900px;
+  margin: 0 0 .8rem 0;
+  color: #2a5563;
+}
+
+/* Hero-Bereich */
+.hero-media {
+  height: 420px; /* mehr Höhe -> mehr Bild sichtbar */
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top; /* Fokuspunkt nach oben */
+}
+
+.hero-content {
+  position: relative;
+  margin-top: -80px; /* Textblock weiter unten */
+  padding: 1.5rem 1.25rem 0 1.25rem;
+  color: #0d2b38;
+}
+
+.hero-content h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.hero-content p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin: .6rem 0 1.1rem 0;
+}
+
+.hero-stats {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  gap: 1.2rem;
+  align-items: center;
+  background: rgba(255,255,255,.85);
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
+  padding: .45rem .8rem;
+  width: fit-content;
+  box-shadow: var(--shadow-1);
+}
+.stat { display: inline-flex; align-items: center; gap: .45rem; }
+.stat-num { font-weight: 800; }
+.stat-label { color: var(--muted); font-weight: 600; }
+
+/* ===== Features Grid ===== */
+.features {
+  margin: 1rem auto 2.25rem auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.feature-card {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  padding: 16px 14px;
+  box-shadow: var(--shadow-1);
+}
+.feature-card h3 {
+  margin: .4rem 0 .25rem;
+  color: #0b3b4c;
+}
+.feature-card p { margin: 0; color: #325563; }
+.feature-icon {
+  font-size: 1.25rem;
+  vertical-align: middle;
+  color: var(--brand-strong);
+}
+
+/* Statusliste luftiger */
+.status-list { margin: .35rem 0 0; padding-left: 1rem; }
+.status-list li { margin: .25rem 0; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero-content { margin-top: -120px; }
+  .features { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .hero-media { height: 260px; }
+  .hero-content { margin-top: -110px; }
+  .features { grid-template-columns: 1fr; }
+  .hero-stats { grid-auto-flow: row; border-radius: 12px; }
+}
+
+/* Abschnittstitel mit Icon */
+.section-title{
+  display:flex; align-items:center; gap:.55rem;
+  margin: 1.4rem 0 .6rem;
+  font-weight: 700;
+}
+.section-title-icon{
+  font-size: 1.15em;
+  color: var(--brand-strong);
+  background: rgba(14,165,233,.12);
+  border-radius: 8px;
+  padding: .35rem .45rem;
+}
+
+/* Mission-Karten (du hast bereits ähnliche Cards; hier nur sanft) */
+.mission-grid{
+  display:grid; gap:12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 1.25rem;
+}
+.mission-card{
+  background: var(--panel);
+  border:1px solid var(--panel-border);
+  border-radius: var(--radius-md);
+  padding: .9rem .95rem;
+  box-shadow: var(--shadow-1);
+}
+
+/* Schritte */
+.steps-grid{
+  display:grid; gap: 18px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  text-align:center;
+  margin-bottom: 1.25rem;
+}
+.step-num{
+  font-size:1.6rem; font-weight:800; color: var(--brand-strong);
+}
+.step-title{ font-weight:700; margin-top:.2rem; }
+.step-text{ color: var(--muted); margin-top:.25rem; }
+
+/* Team-Kärtchen */
+.team-grid{
+  display:grid; gap:14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 1.25rem;
+}
+.team-card{
+  background: var(--panel);
+  border:1px solid var(--panel-border);
+  border-radius: var(--radius-md);
+  padding:.9rem .95rem;
+  box-shadow: var(--shadow-1);
+}
+.team-icon-bubble{
+  width:34px; height:34px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background: rgba(16,185,129,.1);
+  color: var(--accent-strong);
+  margin-bottom:.35rem;
+}
+
+/* FAQ */
+.faq-grid{
+  display:grid; gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: .75rem;
+}
+.faq-item{
+  background: var(--panel);
+  border:1px solid var(--panel-border);
+  border-radius: var(--radius-md);
+  padding:.9rem .95rem;
+  box-shadow: var(--shadow-1);
+}
+
+/* Responsiv */
+@media (max-width: 900px){
+  .mission-grid{ grid-template-columns: 1fr; }
+  .steps-grid{ grid-template-columns: repeat(2, 1fr); }
+  .team-grid{ grid-template-columns: 1fr; }
+  .faq-grid{ grid-template-columns: 1fr; }
+}
+

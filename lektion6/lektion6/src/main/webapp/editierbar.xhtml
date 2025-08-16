@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Aufgabenliste</title>
+	<link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+</h:head>
+<h:body>
+	<h1>TO-DO WebApp</h1>
+	<h:form>
+		<p:dataTable var="aufgabe" value="#{aufgabenListe.liste}">
+			<f:facet name="header">
+				<h2>Aufgabenliste ändern</h2>
+			</f:facet>
+			<p:column headerText="Text">
+				<p:inputText value="#{aufgabe.text}" required="true" label="Aufgabentext"/>
+			</p:column>
+			<p:column headerText="Person">
+				<p:inputText value="#{aufgabe.person}" />
+			</p:column>
+			<p:column headerText="Fällig am">
+				<p:datePicker id="faelligAm" value="#{aufgabe.faelligAm}"
+					pattern="dd.MM.yy" />
+			</p:column>
+			<p:column headerText="Erledigt">
+				<p:toggleSwitch value="#{aufgabe.erledigt}" />
+			</p:column>
+			<p:column headerText="Aufwand (h)">
+				<h:inputHidden id="aufwand" value="#{aufgabe.aufwand}" />
+				<p:outputLabel id="output" value="#{aufgabe.aufwand}" />
+				<p:slider for="aufwand" display="output" minValue="1" maxValue="40" />
+			</p:column>
+		</p:dataTable>
+		<p:messages id="messages">
+			<p:autoUpdate />
+		</p:messages>
+		<p:commandButton value="Speichern" icon="pi pi-check"
+			action="#{controller.stopEdit()}" />
+	</h:form>
+</h:body>
+</html>

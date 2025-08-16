@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/main.xhtml">
+
+    <ui:define name="title">Login – Shea Sepherd</ui:define>
+
+    <ui:define name="content">
+
+        <!-- Blauer Bereich -->
+        <div class="login-section">
+            <div class="auth-wrapper-centered">
+                <p:card styleClass="auth-card">
+                    <f:facet name="title">Login</f:facet>
+
+                    <h:form id="loginForm">
+                        <div class="login-grid">
+                            <div class="login-label">Benutzername *</div>
+                            <div class="login-field">
+                                <p:inputText id="user"
+                                             value="#{loginController.benutzername}"
+                                             style="width:260px" />
+                            </div>
+
+                            <div class="login-label">Passwort *</div>
+                            <div class="login-field">
+                                <p:password id="pwd"
+                                            value="#{loginController.passwort}"
+                                            feedback="false"
+                                            style="width:260px" />
+                            </div>
+                        </div>
+
+                        <div class="login-actions">
+                            <p:commandButton value="Anmelden"
+                                             icon="pi pi-sign-in"
+                                             styleClass="btn btn-success"
+                                             action="#{loginController.login}"
+                                             update="@form"/>
+                            <h:link outcome="/index.xhtml" style="margin-left:.75rem;">
+                                Zurück zur Startseite
+                            </h:link>
+                        </div>
+
+                        <div class="login-hint">
+                            Testzugänge: <code>bergend/bergend</code>, <code>admin/admin</code>
+                        </div>
+                    </h:form>
+                </p:card>
+            </div>
+        </div>
+
+    </ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title><ui:insert name="title">Shea Sepherd</ui:insert></title>
+    <h:outputStylesheet library="css" name="styles.css"/>
+    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces"/>
+</h:head>
+
+<h:body class="app-body">
+
+    <!-- Header / Navigation -->
+    <header class="app-header">
+        <div class="container nav-row">
+            
+            <!-- Brand mit klickbarem Logo -->
+            <div class="brand">
+                <h:link outcome="/index.xhtml" styleClass="brand-link">
+                    <h:graphicImage library="images" name="logo.png" alt="Shea Sepherd Logo"
+                                    style="height:40px; width:auto; vertical-align:middle; margin-right:8px;" />
+                    <h:outputText value="Shea Sepherd" style="font-weight:bold; font-size:1.2rem; vertical-align:middle;" />
+                </h:link>
+            </div>
+
+            <!-- Menü -->
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><h:link outcome="/index.xhtml">Startseite</h:link></li>
+                    <li><h:link outcome="/fischernetze.xhtml">Fischernetze</h:link></li>
+                    <li><h:link outcome="/karte.xhtml">Karte</h:link></li>
+                    <li><h:link outcome="/wer-bergt-was.xhtml">Wer bergt was?</h:link></li>
+                    <li><h:link outcome="/ueber-uns.xhtml">Über uns</h:link></li>
+                </ul>
+            </nav>
+
+            <!-- Aktionen rechts -->
+            <div class="nav-actions">
+                <!-- Login (wenn nicht eingeloggt) -->
+                <h:panelGroup rendered="#{!loginController.eingeloggt}">
+                    <h:link outcome="/login.xhtml" styleClass="login-btn">
+                        <i class="pi pi-sign-in"></i>
+                        <span>Login</span>
+                    </h:link>
+                </h:panelGroup>
+
+                <!-- Logout (wenn eingeloggt) -->
+                <h:panelGroup rendered="#{loginController.eingeloggt}">
+                    <h:form styleClass="inline-form">
+                        <p:commandButton value="Logout"
+                                         icon="pi pi-sign-out"
+                                         styleClass="ui-button-danger btn btn-danger"
+                                         action="#{loginController.logout}"
+                                         update="@none"/>
+                    </h:form>
+                </h:panelGroup>
+            </div>
+        </div>
+    </header>
+
+    <!-- Seiteninhalt -->
+    <main class="app-main">
+        <div class="container">
+            <ui:insert name="content"/>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="container footer-row">
+            <span>&#169; 2025 Shea Sepherd</span>
+            <span style="margin-left:.5rem;">
+                <h:link outcome="/impressum.xhtml">Impressum</h:link>
+            </span>
+        </div>
+    </footer>
+
+</h:body>
+</html>

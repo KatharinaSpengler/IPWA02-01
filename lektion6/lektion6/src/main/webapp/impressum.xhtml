@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Impressum – Shea Sepherd</title>
+    <h:outputStylesheet library="css" name="styles.css"/>
+</h:head>
+
+<h:body>
+    <ui:composition template="/WEB-INF/templates/main.xhtml">
+
+        <ui:define name="title">Impressum</ui:define>
+
+        <ui:define name="content">
+            <main style="padding: 2rem 15%; min-height: calc(100vh - 160px);">
+                <h1>Impressum</h1>
+                <p style="color: #666; margin-top: .25rem;">
+                    Hinweis: Dieses Impressum ist ein Muster für eine Non-Profit-Organisation
+                    und muss mit echten Daten ersetzt werden.
+                </p>
+
+                <section style="margin-top: 1.5rem; line-height: 1.6;">
+                    <h3>Shea Sepherd – Non-Profit-Organisation zum Schutz der Meere</h3>
+                    <p>
+                        Shea Sepherd e. V.<br/>
+                        Ozeanstraße 42<br/>
+                        12345 Küstenstadt<br/>
+                        Deutschland
+                    </p>
+
+                    <h4>Vertreten durch den Vorstand</h4>
+                    <p>
+                        Katharina Spengler (Vorsitzende)<br/>
+                        Mike Beispiel (Stellv. Vorsitzender)
+                    </p>
+
+                    <h4>Kontakt</h4>
+                    <p>
+                        Telefon: +49 (0) 123 456 789<br/>
+                        E-Mail: kontakt@shea-sepherd.org<br/>
+                        Web: www.shea-sepherd.org
+                    </p>
+
+                    <h4>Registereintrag</h4>
+                    <p>
+                        Eingetragen im Vereinsregister beim Amtsgericht Küstenstadt<br/>
+                        Vereinsregisternummer: VR 1234
+                    </p>
+
+                    <h4>Gemeinnützigkeit</h4>
+                    <p>
+                        Shea Sepherd e. V. ist vom Finanzamt Küstenstadt als gemeinnützig anerkannt.<br/>
+                        Steuernummer: 12/345/67890
+                    </p>
+
+                    <h4>Verantwortlich i. S. d. § 55 Abs. 2 RStV</h4>
+                    <p>
+                        Max Mustermann, Ozeanstraße 42, 12345 Küstenstadt
+                    </p>
+                </section>
+            </main>
+        </ui:define>
+
+    </ui:composition>
+</h:body>
+</html>

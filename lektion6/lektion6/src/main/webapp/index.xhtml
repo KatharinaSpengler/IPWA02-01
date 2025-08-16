@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/main.xhtml">
+    <ui:define name="title">Startseite – Shea Sepherd</ui:define>
+
+    <ui:define name="content">
+
+        <!-- Hero-Bereich mit lokalem Bild -->
+        <div style="position:relative; text-align:center; color:#fff;">
+            <h:graphicImage
+                library="images"
+                name="hero-ocean.png"
+                alt="Meer"
+                style="width:100%; height:60vh; object-fit:cover;" />
+
+            <!-- Overlay mit Text + Buttons -->
+            <div style="
+                position:absolute; inset:0;
+                background: rgba(0,0,0,0.40);
+                display:flex; flex-direction:column;
+                align-items:center; justify-content:center;
+                padding: 20px;">
+                <h1 style="font-size:2.6rem; font-weight:800; margin:0 0 10px 0;">
+                    Gemeinsam Geisternetze finden &amp; bergen
+                </h1>
+                <p style="max-width:860px; font-size:1.2rem; line-height:1.5; margin:0 16px;">
+                    Geisternetze gefährden Meerestiere und zerstören Lebensräume.
+                    Mit deiner Hilfe melden wir Sichtungen, koordinieren Bergungen
+                    und machen die Ozeane sicherer.
+                </p>
+                <div style="margin-top:22px; display:flex; gap:.6rem; flex-wrap:wrap;">
+                    <h:link outcome="/fischernetze.xhtml"
+                            styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                        <span class="ui-button-text">Zu den Fischernetzen</span>
+                    </h:link>
+                    <h:link outcome="/karte.xhtml"
+                            styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                        <span class="ui-button-text">Weltkarte ansehen</span>
+                    </h:link>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kleine Faktenreihe unter dem Hero -->
+        <div style="
+            display:flex; justify-content:center; gap:2rem;
+            flex-wrap:wrap; margin:28px 0;">
+            <div style="text-align:center;">
+                <span style="font-size:1.8rem; display:block;">✔</span>
+                <span>Gemeldet</span>
+            </div>
+            <div style="text-align:center;">
+                <span style="font-size:1.8rem; display:block;">↻</span>
+                <span>Bergung bevorstehend</span>
+            </div>
+            <div style="text-align:center;">
+                <span style="font-size:1.8rem; display:block;">🛟</span>
+                <span>Geborgen</span>
+            </div>
+            <div style="text-align:center;">
+                <span style="font-size:1.8rem; display:block;">✖</span>
+                <span>Verschollen</span>
+            </div>
+        </div>
+
+        <!-- Info-Blöcke -->
+        <div style="display:flex; justify-content:space-around; flex-wrap:wrap; margin-bottom:30px; text-align:center;">
+            <div style="flex:1; min-width:220px; padding:10px;">
+                <h3>Netze melden</h3>
+                <p>Erfasse den Standort, die Größe und Status, das Ganze ist auch anonym möglich. Jede Meldung hilft, Einsätze zu planen.</p>
+            </div>
+            <div style="flex:1; min-width:220px; padding:10px;">
+                <h3>Bergungen koordinieren</h3>
+                <p>Bergende Teams tragen sich ein und halten alle auf dem Laufenden komplett transparent &amp; effizient für jeden.</p>
+            </div>
+            <div style="flex:1; min-width:220px; padding:10px;">
+                <h3>Weltkarte</h3>
+                <p>Sieh offene und erledigte Netze auf der Karte. Filter &amp; Legende geben dir den schnellen Überblick.</p>
+            </div>
+            <div style="flex:1; min-width:220px; padding:10px;">
+                <h3>Community</h3>
+                <p>Abstimmen statt doppelt fahren: Wer bergt was? Für weniger Aufwand und mehr Wirkung, einfach effizienter.</p>
+            </div>
+        </div>
+
+    </ui:define>
+</ui:composition>
+</html>

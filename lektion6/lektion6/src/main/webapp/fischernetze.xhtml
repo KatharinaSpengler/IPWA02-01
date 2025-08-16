@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="jakarta.faces.html"
+        xmlns:f="jakarta.faces.core"
+        xmlns:ui="jakarta.faces.facelets"
+        xmlns:p="http://primefaces.org/ui"
+        template="/WEB-INF/templates/main.xhtml">
+
+    <ui:define name="title">Fischernetze</ui:define>
+
+    <ui:define name="content">
+        <h:form id="formNetze">
+            <p:messages id="msgs" showDetail="true" closable="true" />
+
+            <p:card styleClass="mb-3">
+                <f:facet name="title">Neues Netz melden</f:facet>
+                <div class="grid">
+                    <div class="col-12 md:col-3">
+                        <p:inputText value="#{aufgabenListeController.eingabeName}" placeholder="Ihr Name (optional)" style="width:100%"/>
+                    </div>
+                    <div class="col-12 md:col-3">
+                        <p:inputText value="#{aufgabenListeController.eingabeTelefon}" placeholder="Telefon (optional)" style="width:100%"/>
+                    </div>
+                    <div class="col-12 md:col-4">
+                        <p:inputText value="#{aufgabenListeController.eingabeKoordinaten}" placeholder="Koordinaten (lat, lon) – z. B. 54.50, 6.50" style="width:100%"/>
+                    </div>
+                    <div class="col-12 md:col-2">
+                        <p:inputNumber value="#{aufgabenListeController.eingabeGroesse}" decimalPlaces="0" placeholder="Größe in m²" style="width:100%"/>
+                    </div>
+                    <div class="col-12">
+                        <p:commandButton value="Melden" icon="pi pi-plus"
+                                         actionListener="#{aufgabenListeController.melden}"
+                                         update="@form" styleClass="p-button-success"/>
+                    </div>
+                </div>
+            </p:card>
+
+            <p:card>
+                <f:facet name="title">Gemeldete Geisternetze</f:facet>
+
+                <p:dataTable id="netzeTable" value="#{aufgabenListeController.netze}" var="netz"
+                             paginator="true" rows="10" stripedRows="true"
+                             tableStyle="table-layout:auto; width:100%;"
+                             responsiveLayout="scroll">
+                    <p:column headerText="ID" style="width:6rem;text-align:center">
+                        <h:outputText value="#{netz.id}"/>
+                    </p:column>
+                    <p:column headerText="Melder">
+                        <h:outputText value="#{netz.melderName != null ? netz.melderName : 'Unbekannt'}"/>
+                    </p:column>
+                    <p:column headerText="Telefon"
+                              rendered="#{loginController.eingeloggt and (loginController.bergend or loginController.admin)}">
+                        <h:outputText value="#{netz.telefonnummer}"/>
+                    </p:column>
+                    <p:column headerText="Koordinaten">
+                        <h:outputText value="#{netz.koordinaten}"/>
+                    </p:column>
+                    <p:column headerText="Größe (m²)" style="width:9rem;text-align:right">
+                        <h:outputText value="#{netz.groesse}">
+                            <f:convertNumber minFractionDigits="0" maxFractionDigits="0"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Status" style="width:12rem">
+                        <h:outputText value="#{netz.status}"/>
+                    </p:column>
+                    <p:column headerText="Name der bergenden Person">
+                        <h:outputText value="#{netz.bergendePerson != null ? netz.bergendePerson : 'Unbekannt'}"/>
+                    </p:column>
+                    <p:column headerText="Aktionen"
+                              rendered="#{loginController.eingeloggt and (loginController.bergend or loginController.admin)}">
+                        <div class="flex flex-wrap gap-2">
+                            <p:commandButton value="Übernehmen" icon="pi pi-user-plus"
+                                             rendered="#{netz.status ne 'BEVORSTEHEND' and netz.status ne 'GEBORGEN'}"
+                                             actionListener="#{aufgabenListeController.uebernehmen(netz)}"
+                                             update="@form:msgs @form:netzeTable"
+                                             styleClass="p-button-sm p-button-success p-button-rounded"/>
+                            <p:commandButton value="Geborgen" icon="pi pi-flag"
+                                             rendered="#{netz.status ne 'GEBORGEN'}"
+                                             actionListener="#{aufgabenListeController.geborgen(netz)}"
+                                             update="@form:msgs @form:netzeTable"
+                                             styleClass="p-button-sm p-button-info p-button-rounded"/>
+                            <p:commandButton value="Verschollen" icon="pi pi-flag-fill"
+                                             rendered="#{netz.status ne 'VERSCHOLLEN'}"
+                                             actionListener="#{aufgabenListeController.verschollen(netz)}"
+                                             update="@form:msgs @form:netzeTable"
+                                             styleClass="p-button-sm p-button-warning p-button-rounded"/>
+                            <p:commandButton value="Löschen" icon="pi pi-trash"
+                                             rendered="#{loginController.admin}"
+                                             onclick="return confirm('Dieses Netz wirklich löschen?');"
+                                             actionListener="#{aufgabenListeController.loeschen(netz)}"
+                                             update="@form:msgs @form:netzeTable"
+                                             styleClass="p-button-sm p-button-danger p-button-rounded"/>
+                        </div>
+                    </p:column>
+                </p:dataTable>
+            </p:card>
+
+        </h:form>
+    </ui:define>
+</ui:composition>

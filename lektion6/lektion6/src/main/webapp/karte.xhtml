@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/main.xhtml">
+
+    <ui:define name="title">Karte – Shea Sepherd</ui:define>
+
+    <ui:define name="content">
+        <div class="page-container">
+            <h1>Weltkarte der Geisternetze</h1>
+
+            <p:outputPanel id="mapWrapper">
+                <div id="map" style="height: 520px; border-radius:12px;"></div>
+
+                <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+                <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+                <script type="text/javascript">
+                    (function() {
+                        var map = L.map('map').setView([20, 0], 2);
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            maxZoom: 18,
+                            attribution: '© OpenStreetMap'
+                        }).addTo(map);
+
+                        var iconColors = {
+                            "GEMELDET": "#1e88e5",
+                            "BEVORSTEHEND": "#f9a825",
+                            "GEBORGEN": "#43a047",
+                            "VERSCHOLLEN": "#6d4c41"
+                        };
+
+                        function dot(color) {
+                            return L.divIcon({
+                                className: 'custom-dot',
+                                html: '<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:'+color+';"></span>',
+                                iconSize: [14,14]
+                            });
+                        }
+
+                        var data = [
+                        <ui:repeat value="#{aufgabenListeController.netze}" var="n" varStatus="st">
+                            #{(st.index > 0) ? ',' : ''}
+                            {
+                              "coord": "#{n.koordinaten}",
+                              "status": "#{n.status}",
+                              "melder": "#{n.melderName != null ? n.melderName : 'Unbekannt'}",
+                              "groesse": "#{n.groesse != null ? n.groesse : 0}"
+                            }
+                        </ui:repeat>
+                        ];
+
+                        data.forEach(function(row){
+                            if(!row.coord) return;
+                            var parts = row.coord.split(',');
+                            if(parts.length !== 2) return;
+                            var lat = parseFloat(parts[0]);
+                            var lon = parseFloat(parts[1]);
+                            if(isNaN(lat) || isNaN(lon)) return;
+
+                            var color = iconColors[row.status] || "#607d8b";
+                            var m = L.marker([lat, lon], {icon: dot(color)}).addTo(map);
+                            m.bindPopup(
+                                  '<b>Status:</b> ' + row.status
+                                + '<br/><b>Melder:</b> ' + row.melder
+                                + '<br/><b>Größe (m²):</b> ' + row.groesse
+                            );
+                        });
+                    })();
+                </script>
+            </p:outputPanel>
+
+            <p:poll interval="10" update="mapWrapper" />
+
+            <div class="legend">
+                <b>Status</b>
+                <ul>
+                    <li><span class="dot" style="background:#1e88e5"></span> Gemeldet</li>
+                    <li><span class="dot" style="background:#f9a825"></span> Bergung bevorstehend</li>
+                    <li><span class="dot" style="background:#43a047"></span> Geborgen</li>
+                    <li><span class="dot" style="background:#6d4c41"></span> Verschollen</li>
+                </ul>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>
+</html>
